@@ -1,16 +1,10 @@
-//
-//  ViewController.swift
-//  Example
-//
-//  Created by Natthida Kritveeranant on 29/4/2565 BE.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
     private let textField = UITextField()
     private let button = UIButton()
     private let label = UILabel()
+    private let loginButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +24,21 @@ class ViewController: UIViewController {
         label.text = ""
         label.textAlignment = .center
         
+        loginButton.setTitle("go to login", for: .normal)
+        loginButton.setTitleColor(.brown, for: .normal)
+        loginButton.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
+        
         // MARK: Subviews
         view.addSubview(textField)
         view.addSubview(button)
         view.addSubview(label)
+        view.addSubview(loginButton)
         
         // MARK: Layout
         textField.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate(
             [
@@ -52,7 +52,11 @@ class ViewController: UIViewController {
                 
                 label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 16),
                 label.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor),
-                label.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor)
+                label.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor),
+                
+                loginButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 16),
+                loginButton.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor),
+                loginButton.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor)
             ]
         )
     }
@@ -61,6 +65,12 @@ class ViewController: UIViewController {
     private func onClick(_ button: UIButton) {
         label.text = "Hello, \(textField.text ?? "")"
         print("Button clicked!!")
+    }
+    
+    @objc
+    private func loginClick(_ button: UIButton) {
+        let loginViewController = LoginViewController()
+        self.navigationController?.pushViewController(loginViewController, animated: true)
     }
 }
 
