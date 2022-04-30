@@ -5,6 +5,7 @@ class ViewController: UIViewController {
     private let button = UIButton()
     private let label = UILabel()
     private let loginButton = UIButton()
+    private let amiiboButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +29,23 @@ class ViewController: UIViewController {
         loginButton.setTitleColor(.brown, for: .normal)
         loginButton.addTarget(self, action: #selector(loginClick), for: .touchUpInside)
         
+        amiiboButton.setTitle("go to Amiibo List", for: .normal)
+        amiiboButton.setTitleColor(.black, for: .normal)
+        amiiboButton.addTarget(self, action: #selector(amiiboClick), for: .touchUpInside)
+        
         // MARK: Subviews
         view.addSubview(textField)
         view.addSubview(button)
         view.addSubview(label)
         view.addSubview(loginButton)
+        view.addSubview(amiiboButton)
         
         // MARK: Layout
         textField.translatesAutoresizingMaskIntoConstraints = false
         button.translatesAutoresizingMaskIntoConstraints = false
         label.translatesAutoresizingMaskIntoConstraints = false
         loginButton.translatesAutoresizingMaskIntoConstraints = false
+        amiiboButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate(
             [
@@ -56,7 +63,11 @@ class ViewController: UIViewController {
                 
                 loginButton.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 16),
                 loginButton.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor),
-                loginButton.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor)
+                loginButton.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor),
+                
+                amiiboButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 16),
+                amiiboButton.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor),
+                amiiboButton.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor),
             ]
         )
     }
@@ -71,6 +82,12 @@ class ViewController: UIViewController {
     private func loginClick(_ button: UIButton) {
         let loginViewController = LoginViewController()
         self.navigationController?.pushViewController(loginViewController, animated: true)
+    }
+    
+    @objc
+    private func amiiboClick(_ button: UIButton) {
+        let tableViewController = TableViewController()
+        self.navigationController?.pushViewController(tableViewController, animated: true)
     }
 }
 

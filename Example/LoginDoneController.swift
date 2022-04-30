@@ -27,11 +27,11 @@ class LoginDoneController: UIViewController {
         labelID.textAlignment = .center
         labelID.textColor = .black
         
-        // addSubView
+        // MARK: SubView
         view.addSubview(label)
         view.addSubview(labelID)
         
-        // Layout
+        // MARK: Layout
         label.translatesAutoresizingMaskIntoConstraints = false
         labelID.translatesAutoresizingMaskIntoConstraints = false
         

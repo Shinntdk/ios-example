@@ -27,16 +27,16 @@ class LoginViewController: UIViewController {
         
         LoginButton.setTitle("Login", for: .normal)
         LoginButton.setTitleColor(.black, for: .normal)
-        LoginButton.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        LoginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         
         
-        
-        //addSubView
+
+        // MARK: SubView
         view.addSubview(IDField)
         view.addSubview(PWField)
         view.addSubview(LoginButton)
         
-        //Layout
+        // MARK: Layout
         IDField.translatesAutoresizingMaskIntoConstraints = false
         PWField.translatesAutoresizingMaskIntoConstraints = false
         LoginButton.translatesAutoresizingMaskIntoConstraints = false
@@ -65,10 +65,8 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(loginDoneController, animated: true)
     }
     
-    public var completion: ((String?) -> Void)?
-    
     @objc
-    private func didTapButton(){
+    private func didTapLoginButton(){
         let loginDoneController = LoginDoneController()
         loginDoneController.labelID.text = IDField.text
         self.navigationController?.pushViewController(loginDoneController, animated: true)
